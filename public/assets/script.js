@@ -5,7 +5,7 @@ const myPeer = new Peer(undefined, {
     // host: '/',
     port: location.protocol === 'https:' ? 443 : 9000,
     // port: 9000,
-    // secure: true
+    secure: true
 })
 const chatButton = document.getElementById('chat')
 const muteButton = document.getElementById('mute')
