@@ -4,10 +4,15 @@ const server = require('http').Server(app)
 const { v4: uuidV4 } = require('uuid')
 const io = require('socket.io')(server)
 const cors = require('cors')
+const corsConfig = {
+    origin: '/',
+    credentials: true
+};
+app.use(cors(corsConfig));
+app.options("*", cors(corsConfig));
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
-app.use(cors())
 
 app.get('/', (req, res) => {
     res.render('index')

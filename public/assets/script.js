@@ -1,12 +1,12 @@
 const socket = io('/')
-const videoGrid = document.getElementById('video-grid')
+const videoGrid = document.getElementById('video-grid')\
+
 const myPeer = new Peer(undefined, {
-    // host: 'peerjs-server.herokuapp.com',
-    host: 'https://conferencex2x.herokuapp.com',
+    host: 'peerjs-server.herokuapp.com',
     // host: '/',
     port: location.protocol === 'https:' ? 443 : 9000,
     // port: 9000,
-    secure: true
+    secure: true,
 })
 const chatButton = document.getElementById('chat')
 const muteButton = document.getElementById('mute')
