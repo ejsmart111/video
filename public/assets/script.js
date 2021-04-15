@@ -2,7 +2,7 @@ const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
     // host: 'peerjs-server.herokuapp.com',
-    host: 'https://conferencex2x.herokuapp.com/',
+    host: 'https://conferencex2x.herokuapp.com',
     // host: '/',
     port: location.protocol === 'https:' ? 443 : 9000,
     // port: 9000,
