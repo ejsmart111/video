@@ -11,6 +11,14 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
+app.all('*', (req, res, next) => {
+    res.header('Access - Control - Allow - Origin', '*');
+    res.header('Access - Control - Allow - Methods', 'PUT, GET, POST, DELETE, PATCH, OPTIONS');
+    res.header('Access - Control - Allow - Headers', '*');
+    res.header('Access - Control - Allow - Credentials', true);
+    next();
+});
+
 app.get('/room', (req, res) => {
     res.redirect(`${uuidV4()}`)
 })
