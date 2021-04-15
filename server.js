@@ -3,21 +3,16 @@ const app = express()
 const server = require('http').Server(app)
 const { v4: uuidV4 } = require('uuid')
 const io = require('socket.io')(server)
+const cors = require('cors')
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+app.use(cors());
+app.options('*', cors());
 
 app.get('/', (req, res) => {
     res.render('index')
 })
-
-app.all('*', (req, res, next) => {
-    res.header('Access - Control - Allow - Origin', '*');
-    res.header('Access - Control - Allow - Methods', 'PUT, GET, POST, DELETE, PATCH, OPTIONS');
-    res.header('Access - Control - Allow - Headers', '*');
-    res.header('Access - Control - Allow - Credentials', true);
-    next();
-});
 
 app.get('/room', (req, res) => {
     res.redirect(`${uuidV4()}`)
