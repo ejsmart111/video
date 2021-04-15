@@ -6,6 +6,10 @@ const io = require('socket.io')(server)
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+});
 
 app.get('/', (req, res) => {
     res.render('index')
