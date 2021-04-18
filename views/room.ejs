@@ -49,19 +49,32 @@
         }
 
         #video-grid {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 100%);
+            grid-auto-rows: 100% ;
+            height: 90%;
+            width: 100%;
+        }
+        #screen-share {
+            display: none;
+            height: 90%;
+            width: 100%;
+        }
+        #screen-share video {
             height: 100%;
             width: 100%;
-            justify-content: center;
-            align-items: center;
+            margin-top: -100px;
+        }
+        #sharer {
+            height: 100px;
+            width: 100px;
         }
         #video-grid video {
             border-radius: 4px;
-            height: 400px;
+            height: 100%;
             object-fit: cover;
             margin: 0;
-            width: 400px;
+            width: 100%;
         }
 
         #message {
@@ -106,13 +119,18 @@
 </head>
 
 <body>
-    <div id="room" style="background: rgb(0, 0, 0);">
+    <div id="room" style="background: rgb(0, 0, 0); height: auto;">
         <%-include('partials/nav')-%>
-        <div id="roomContainer" style="padding-bottom: 80px;" class="container"><input id="idurl" style="display: block; margin-top: -30px;" />
+        <div id="roomContainer" class="container"><input id="idurl" style="display: block; margin-top: -30px;" />
             <div id="video-grid">
                 <!-- <div class="video">
                     <video controls src="/assets/Shaun-the-Sheep-The-Movie-Official-Trailer.mp4" type="video/mp4" autoplay/>
                 </div>-->
+            </div>
+            <div id="screen-share">
+                <div id="sharer">
+
+                </div>
             </div>
         </div>
         <div id="sidenav">
@@ -124,25 +142,28 @@
         <div class="footer">
             <div class="container pt-3 pb-5">
                 <div class="foot">
-                    <button id="muteoff" class="mute">
+                    <button title="Unmute Audio" id="muteoff" class="mute">
                         <i style="color:black;font-size: 20px;" class="bi bi-mic"></i>
                     </button>
-                    <button id="mute" class="mute inverse">
+                    <button title="Mute Audio" id="mute" class="mute inverse">
                         <i class="bi bi-mic-mute"></i>
                     </button>
-                    <button id="video" class="mute">
+                    <button title="Show Video" id="video" class="mute">
                         <i class="bi bi-camera-video"></i>
                     </button>
-                    <button id="videooff" class="mute inverse">
+                    <button title="Hide Video" id="videooff" class="mute inverse">
                         <i class="bi bi-camera-video-off"></i>
                     </button>
-                    <button id="chat" style="background: none;" class="mute">
+                    <button disabled id="share" title="Share Screen" class="mute">
+                        <i class="bi bi-arrow-up-square"></i>
+                    </button>
+                    <button id="chat" title="Chat with Users" style="background: none;" class="mute">
                         <i class="bi bi-chat-right-dots"></i>
                     </button>
-                    <button id="copy" class="mute" title="Copy room ID">
+                    <button id="copy" title="Copy Room Link" class="mute" title="Copy room ID">
                         <i class="bi bi-person-plus"></i>
                     </button>
-                    <button id="hangup" class="mute">
+                    <button id="hangup" title="Hangup Call" class="mute">
                         <i style="color: rgb(190, 13, 13)" class="bi bi-telephone-x-fill"></i>
                     </button>
                 </div>
