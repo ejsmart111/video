@@ -2,11 +2,11 @@ const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 
 const myPeer = new Peer(undefined, {
-    // host: 'peerjs-server.herokuapp.com',
-    host: '/',
-    // port: location.protocol === 'https:' ? 443 : 9000,
-    port: 9000,
-    // secure: true,
+    host: 'peerjs-server.herokuapp.com',
+    // host: '/',
+    port: location.protocol === 'https:' ? 443 : 9000,
+    // port: 9000,
+    secure: true,
     config: {
         'iceServers': [
             { url: 'stun:stun01.sipphone.com' },
