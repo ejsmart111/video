@@ -1,51 +1,7 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 
-const myPeer = new Peer(undefined, {
-    host: 'peerjs-server.herokuapp.com',
-    // host: '/',
-    port: location.protocol === 'https:' ? 443 : 9000,
-    // port: 9000,
-    secure: true,
-    config: {
-        'iceServers': [
-            { url: 'stun:stun01.sipphone.com' },
-            { url: 'stun:stun.ekiga.net' },
-            { url: 'stun:stun.fwdnet.net' },
-            { url: 'stun:stun.ideasip.com' },
-            { url: 'stun:stun.iptel.org' },
-            { url: 'stun:stun.rixtelecom.se' },
-            { url: 'stun:stun.schlund.de' },
-            { url: 'stun:stun.l.google.com:19302' },
-            { url: 'stun:stun1.l.google.com:19302' },
-            { url: 'stun:stun2.l.google.com:19302' },
-            { url: 'stun:stun3.l.google.com:19302' },
-            { url: 'stun:stun4.l.google.com:19302' },
-            { url: 'stun:stunserver.org' },
-            { url: 'stun:stun.softjoys.com' },
-            { url: 'stun:stun.voiparound.com' },
-            { url: 'stun:stun.voipbuster.com' },
-            { url: 'stun:stun.voipstunt.com' },
-            { url: 'stun:stun.voxgratia.org' },
-            { url: 'stun:stun.xten.com' },
-            {
-                url: 'turn:numb.viagenie.ca',
-                credential: 'muazkh',
-                username: 'webrtc@live.com'
-            },
-            {
-                url: 'turn:192.158.29.39:3478?transport=udp',
-                credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
-                username: '28224511:1379330808'
-            },
-            {
-                url: 'turn:192.158.29.39:3478?transport=tcp',
-                credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
-                username: '28224511:1379330808'
-            }
-        ]
-    }
-})
+const myPeer = new Peer()
 const chatButton = document.getElementById('chat')
 const muteButton = document.getElementById('mute')
 const muteOffButton = document.getElementById('muteoff')
@@ -163,8 +119,8 @@ function stopScreenShare() {
     userGridsDivision()
 }
 
-
-navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
+var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+getUserMedia({ video: true, audio: true }, stream => {
     addNewVideoStream(myVideo, stream)
     localstream = stream
 
