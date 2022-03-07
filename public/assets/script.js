@@ -119,8 +119,8 @@ function stopScreenShare() {
     userGridsDivision()
 }
 
-var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-getUserMedia({ video: true, audio: true }, stream => {
+var getUserMedia = navigator.mediaDevices.getUserMedia || navigator.mediaDevices.webkitGetUserMedia || navigator.mediaDevices.mozGetUserMedia;
+getUserMedia({ video: true, audio: true }).then(stream => {
     addNewVideoStream(myVideo, stream)
     localstream = stream
 
