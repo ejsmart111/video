@@ -12,13 +12,27 @@ const sideNav = document.getElementById('sidenav')
 const chatBox = document.getElementById('message')
 const messageArea = document.getElementById('messageArea')
 const shareButton = document.getElementById('share')
+const stopShare = document.getElementById('stop-share')
 let localstream = null;
 const myVideo = document.createElement('video')
+const footer = document.getElementById('footer')
 myVideo.muted = true
 myVideo.controls = false
 const peers = {}
 let user = ''
 let currentPeer = null
+
+document.onmousemove = event => {
+    const body = document.body
+    const html = document.documentElement
+    var height = Math.max( body.scrollHeight, body.offsetHeight, 
+        html.clientHeight, html.scrollHeight, html.offsetHeight );
+    if (event.y === height || event.y > height-100) {
+        footer.style.display = 'block'
+        return false;
+    }
+    footer.style.display = 'none'
+}
 
 chatButton.addEventListener('click', (e) => {
     e.stopPropagation()
@@ -94,11 +108,19 @@ shareButton.addEventListener('click', () => {
         let sender = currentPeer.getSenders().find(x => x.track.kind == stream.getVideoTracks()[0].kind)
         sender.replaceTrack(stream.getVideoTracks()[0])
         shareButton.disabled = true
+        shareButton.style.display = 'none'
+        stopShare.style.display = 'block'
         sharedScreen.append(video)
         stream.getVideoTracks()[0].onended = () => {
             stopScreenShare()
         }
     })
+})
+
+stopShare.addEventListener('click', () => {
+    stopScreenShare()
+    shareButton.style.display = 'block'
+    stopShare.style.display = 'none'
 })
 
 function updateShareButton(){ 
@@ -119,7 +141,6 @@ function stopScreenShare() {
     userGridsDivision()
 }
 
-// var getUserMedia = navigator.mediaDevices.getUserMedia || navigator.mediaDevices.webkitGetUserMedia || navigator.mediaDevices.mozGetUserMedia;
 var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 getUserMedia({ video: true, audio: true}, stream => {
     addNewVideoStream(myVideo, stream)
@@ -219,10 +240,12 @@ function addNewVideoStream (video, stream) {
 
 function userGridsDivision ()  {
     let totalUsers = document.getElementsByTagName('video').length
+    const videos = document.getElementsByTagName('video')
 
     if (totalUsers == 2) {
         videoGrid.style.gridTemplateColumns = 'repeat(auto-fill,' + 100 / totalUsers + '%)'
         videoGrid.style.gridAutoRows = 100 / totalUsers + '%'
+
     } else if (totalUsers == 3) {
         videoGrid.style.gridTemplateColumns = 'repeat(auto-fill,' + 100 / 2 + '%)'
         videoGrid.style.gridAutoRows = 100 / 2 + '%'

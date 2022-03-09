@@ -2,18 +2,18 @@
 *  {
     font-family: 'Maven pro', sans-serif;
 }
-
-
 .top {
     margin-top: 150px;
 }
 
-.footer {
+#footer {
     background-color: #F8F9FA;
     bottom: 0;
     height: 70px;
     left: 0;
+    display: none;
     position: fixed;
+    transition: all .3s ease-in-ut;
     width: 100%;
     z-index: 0;
 }
@@ -54,4 +54,134 @@
 }
 #videoOff {
     display: none;
+}
+.a {
+    border-radius: 25px;
+    padding: 12px;
+    min-width: 200px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.start-btn {
+    background-color: rgb(96, 65, 209);
+    color: white !important;
+}
+
+.join-btn {
+    background-color: rgb(236, 234, 240);
+    color: #333333 !important;
+}
+
+.header {
+    background-color: rgb(235, 235, 235);
+    margin-top: 55px;
+    padding: 10px;
+}
+
+a:hover {
+    color: white;
+}
+
+#video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100%);
+    grid-auto-rows: 100% ;
+    height: 90%;
+    width: 100%;
+}
+#screen-share {
+    display: none;
+    height: 90%;
+    width: 100%;
+}
+#screen-share video {
+    height: 100%;
+    width: 100%;
+    margin-top: -100px;
+}
+#sharer {
+    height: 100px;
+    width: 100px;
+}
+#video-grid video {
+    border-radius: 4px;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+    margin-top: 30px;
+    width: 100%;
+}
+
+#message {
+    bottom: 0;
+    font-size: 14px;
+    left: 0;
+    position: absolute;
+}
+
+#messageArea {
+    height: 85%;
+    overflow-y: scroll;
+    padding: 15px;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+}
+.chat {
+    margin: 15px 0;
+    font-size: 14px;
+}
+.me {
+    background-color: rgb(66, 30, 199);
+    border-radius: 5px 0px 0px 5px;
+    color: white;
+    margin-left: auto !important;
+    text-align: right;
+    max-width: 150px;
+    padding: 10px;
+    width: auto;
+}
+.notme {
+    background-color: rgb(236, 234, 240);
+    border-radius: 0px 5px 5px 0px;
+    color: #333333;
+    margin-right: auto;
+    text-align: left;
+    max-width: 150px;
+    padding: 10px;
+    width: auto;
+}
+#room {
+    background-color: black;
+    height: 100vh;
+}
+#stop-share {
+    display: none;
+}
+.a {
+    border-radius: 25px;
+    padding: 12px;
+    min-width: 200px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.start-btn {
+    background-color: rgb(96, 65, 209);
+    color: white !important;
+}
+.start-btn:hover {
+    background-color: rgb(66, 30, 199);
+}
+
+.join-btn {
+    background-color: rgb(236, 234, 240);
+    color: #333333 !important;
+}
+.join-btn:hover {
+    background-color: rgb(215, 206, 235);
+}
+
+a:hover {
+    color: white;
 }

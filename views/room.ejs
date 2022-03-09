@@ -19,118 +19,15 @@
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js" defer></script>
     <script src="/socket.io/socket.io.js" defer></script>
     <script src="/assets/script.js" defer></script>
-    <style>
-        .a {
-            border-radius: 25px;
-            padding: 12px;
-            min-width: 200px;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .start-btn {
-            background-color: rgb(96, 65, 209);
-            color: white !important;
-        }
-
-        .join-btn {
-            background-color: rgb(236, 234, 240);
-            color: #333333 !important;
-        }
-
-        .header {
-            background-color: rgb(235, 235, 235);
-            margin-top: 55px;
-            padding: 10px;
-        }
-
-        a:hover {
-            color: white;
-        }
-
-        #video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, 100%);
-            grid-auto-rows: 100% ;
-            height: 90%;
-            width: 100%;
-        }
-        #screen-share {
-            display: none;
-            height: 90%;
-            width: 100%;
-        }
-        #screen-share video {
-            height: 100%;
-            width: 100%;
-            margin-top: -100px;
-        }
-        #sharer {
-            height: 100px;
-            width: 100px;
-        }
-        #video-grid video {
-            border-radius: 4px;
-            height: 100%;
-            object-fit: cover;
-            margin: 0;
-            width: 100%;
-        }
-
-        #message {
-            bottom: 0;
-            font-size: 14px;
-            left: 0;
-            position: absolute;
-        }
-
-        #messageArea {
-            height: 85%;
-            overflow-y: scroll;
-            padding: 15px;
-            padding-bottom: 10px;
-            scroll-behavior: smooth;
-        }
-        .chat {
-            margin: 15px 0;
-            font-size: 14px;
-        }
-        .me {
-            background-color: rgb(66, 30, 199);
-            border-radius: 5px 0px 0px 5px;
-            color: white;
-            margin-left: auto !important;
-            text-align: right;
-            max-width: 150px;
-            padding: 10px;
-            width: auto;
-        }
-        .notme {
-            background-color: rgb(236, 234, 240);
-            border-radius: 0px 5px 5px 0px;
-            color: #333333;
-            margin-right: auto;
-            text-align: left;
-            max-width: 150px;
-            padding: 10px;
-            width: auto;
-        }
-    </style>
 </head>
 
 <body>
-    <div id="room" style="background: rgb(0, 0, 0); height: auto;">
+    <div id="room">
         <%-include('partials/nav')-%>
-        <div id="roomContainer" class="container"><input id="idurl" style="display: block; margin-top: -30px;" />
-            <div id="video-grid">
-                <!-- <div class="video">
-                    <video controls src="/assets/Shaun-the-Sheep-The-Movie-Official-Trailer.mp4" type="video/mp4" autoplay/>
-                </div>-->
-            </div>
+        <div id="roomContainer" class="container"><input id="idurl" />
+            <div id="video-grid"></div>
             <div id="screen-share">
-                <div id="sharer">
-
-                </div>
+                <div id="sharer"></div>
             </div>
         </div>
         <div id="sidenav">
@@ -139,7 +36,7 @@
             </div><div id="messageArea"></div>
             <input class="form-control" placeholder="Type your message and hit enter..." id="message" />
         </div>
-        <div class="footer">
+        <div id="footer">
             <div class="container pt-3 pb-5">
                 <div class="foot">
                     <button title="Unmute Audio" id="muteoff" class="mute">
@@ -156,6 +53,9 @@
                     </button>
                     <button disabled id="share" title="Share Screen" class="mute">
                         <i class="bi bi-arrow-up-square"></i>
+                    </button>
+                    <button id="stop-share" title="Stop Screen Share" class="mute">
+                        <i class="bi bi-x"></i>
                     </button>
                     <button id="chat" title="Chat with Users" style="background: none;" class="mute">
                         <i class="bi bi-chat-right-dots"></i>
